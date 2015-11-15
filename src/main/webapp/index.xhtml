@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" 
+      >
+
+    <h:head>
+        <title>Peladeiro randomizer</title>
+        <style type="text/css">
+            .ui-widget {
+                font-size: 12px !important;
+            }
+        </style>
+    </h:head>
+    <h:body >
+        <ui:param name="dadosImportados" value="#{not empty randomizerBean.peladeirosPickList}"/>
+        <h:form>
+            <p:growl autoUpdate="true" escape="false"/>
+
+            <p:panelGrid  layout="grid" columns="2" styleClass="grid" rendered="#{empty randomizerBean.peladeirosPickList}" >
+
+                <p:panel header="Importar artilharia" style="max-height: 350px;overflow: auto">
+                    <p:inputTextarea scrollHeight="100" rows="20" cols="40"
+                                     value="#{randomizerBean.textArtilharia}" required="true" requiredMessage="Informe a artilharia"/>
+                </p:panel>
+
+                <p:panel header="Importar pontuação absoluta" style="max-height: 350px;overflow: auto">
+                    <p:inputTextarea scrollHeight="100" rows="20" cols="40"
+                                     value="#{randomizerBean.textPontuacaoAbsoluta}"
+                                     required="true" requiredMessage="Informe a pontuação absoluta"/>
+                </p:panel>
+            </p:panelGrid>
+            <br/>
+            <div style="width:100%;text-align: center">
+                    <p:commandButton rendered="#{not dadosImportados}" value="Importar statisticas dos jogadores" style="text-align: center" action="#{randomizerBean.importarEstatisticas()}" update="@form"/>
+            </div>
+            <h:panelGroup rendered="#{dadosImportados}" styleClass="ui-grid ui-grid-responsive" style="text-align: center">
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-6">
+                        <p:commandButton rendered="#{dadosImportados}" value="Reimportar statisticas" style="text-align: center" action="#{randomizerBean.reImportar()}" update="@form" process="@this"/>
+                     </div>
+                    <div class="ui-grid-col-6">
+                        <p:commandButton rendered="#{dadosImportados}" value="Sortear times" action="#{randomizerBean.randomize}" update="@(.panelRandomized)"/>
+                    </div>
+                </div>
+                <br/>
+               <div class="ui-grid-row">
+                   <div class="ui-grid-col-6">
+                       <p:pickList id="pickList" styleClass="picklist" filterMatchMode="contains" showSourceFilter="true"
+                                   value="#{randomizerBean.peladeirosPickList}" converter="peladeiroConverter"
+                                   var="p" itemLabel="#{p}" itemValue="#{p}" >
+                           <f:facet name="sourceCaption">Peladeiros Disponiveis</f:facet>
+                           <f:facet name="targetCaption">Peladeiros participantes</f:facet>
+                       </p:pickList>
+                   </div>
+
+                   <div class="ui-grid-col-6">
+                       <p:panel header="Times da pelada" style="min-height: 400px;overflow: auto" styleClass="panelRandomized">
+                           <p:panelGrid layout="grid" columns="2" rendered="#{not empty randomizerBean.timesRandomizados}" styleClass="grid">
+                               <h:panelGroup layout="block">
+                               <span style="text-align: center">
+                                   <b>Time 1</b> (#{randomizerBean.timesRandomizados.time1.pontuacao} pontos)
+                               </span>
+                                   <ol>
+                                       <ui:repeat value="#{randomizerBean.timesRandomizados.time1.jogadores}" var="i">
+                                           <li>
+                                               #{i.nome}
+                                           </li>
+                                       </ui:repeat>
+                                   </ol>
+                               </h:panelGroup>
+                               <h:panelGroup layout="block">
+                               <span style="text-align: center">
+                                   <b>Time 2</b> (#{randomizerBean.timesRandomizados.time2.pontuacao} pontos)
+                               </span>
+                                   <ol>
+                                       <ui:repeat value="#{randomizerBean.timesRandomizados.time2.jogadores}" var="j">
+                                           <li>
+                                               #{j.nome}
+                                           </li>
+                                       </ui:repeat>
+                                   </ol>
+                               </h:panelGroup>
+                           </p:panelGrid>
+                       </p:panel>
+                   </div>
+               </div>
+            </h:panelGroup>
+
+        </h:form>
+
+        <style type="text/css">
+           .ui-widget-content{
+                min-height: 300px!important;
+                overflow: auto;
+            }
+
+           .ui-panelgrid-content{
+               border: none!important;
+           }
+
+        </style>
+    </h:body>
+
+
+</html>

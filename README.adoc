@@ -1,0 +1,13 @@
+== peladeiro-rpestano.rhcloud.com/random[Peladeiro random^]
+
+
+. Importe as estatíscas dos peladeiros
+. Escolha os jogadores que irão participar da pelada
+. Click em sortear 
+
+O Peladeiro randomizer vai fazer 10 sorteios e pegar a pontuação(pontuação absolula * artilharia) mais próxima entre os dois times.
+
+ 
+== Demo
+
+image:http://img.youtube.com/vi/Ml4yOsSs76Q/0.jpg[Demo, link=https://www.youtube.com/watch?v=Ml4yOsSs76Q, window="_blank"]
