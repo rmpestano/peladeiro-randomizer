@@ -10,4 +10,4 @@ O Peladeiro randomizer vai fazer 10 sorteios e pegar a pontuação(pontuação a
  
 == Demo
 
-image:http://img.youtube.com/vi/Ml4yOsSs76Q/0.jpg[Demo, link=https://www.youtube.com/watch?v=Ml4yOsSs76Q, window="_blank"]
+image:http://img.youtube.com/vi/9GZBsTcT4iM/0.jpg[Demo, link=https://www.youtube.com/watch?v=9GZBsTcT4iM, window="_blank"]
