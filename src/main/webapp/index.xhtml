@@ -17,7 +17,11 @@
         <ui:param name="dadosImportados" value="#{not empty randomizerBean.peladeirosPickList}"/>
         <h:form>
             <p:growl autoUpdate="true" escape="false"/>
-
+            <h:panelGroup layout="block" style="float: right;font-size: 10px">
+                <p:outputPanel autoUpdate="true">
+                     Sorteios realizados: <b>#{randomizerBean.numSorteios()}</b>
+                </p:outputPanel>
+            </h:panelGroup>
             <p:panelGrid  layout="grid" columns="2" styleClass="grid" rendered="#{empty randomizerBean.peladeirosPickList}" >
 
                 <p:panel header="Importar artilharia" style="max-height: 350px;overflow: auto">

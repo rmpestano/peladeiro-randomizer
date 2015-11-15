@@ -3,6 +3,7 @@ package com.github.peladeiro.randomizer.bean;
 import com.github.peladeiro.randomizer.infra.exception.CustomException;
 import com.github.peladeiro.randomizer.model.Peladeiro;
 import com.github.peladeiro.randomizer.model.ResultadoRandom;
+import com.github.peladeiro.randomizer.model.Sorteio;
 import com.github.peladeiro.randomizer.service.PeladeiroManager;
 import com.github.peladeiro.randomizer.service.RandomService;
 import com.github.peladeiro.randomizer.service.StatisticsImporter;
@@ -14,6 +15,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +37,9 @@ public class RandomizerBean implements Serializable {
 
     @Inject
     private RandomService randomService;
+
+    @PersistenceContext
+    private EntityManager em;
 
     private String textArtilharia;
 
@@ -55,6 +62,7 @@ public class RandomizerBean implements Serializable {
     }
 
 
+    @Transactional
     public void randomize() {
         timesRandomizados = null;
         if(getPeladeirosPickList().getTarget() == null || getPeladeirosPickList().getTarget().isEmpty()){
@@ -67,7 +75,12 @@ public class RandomizerBean implements Serializable {
             }
         }
 
+        em.persist(new Sorteio());
 
+    }
+
+    public Long numSorteios(){
+        return (Long) em.createNamedQuery("Sorteio.count").getSingleResult();
     }
 
     public void importarEstatisticas(){
