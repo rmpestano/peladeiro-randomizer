@@ -14,8 +14,13 @@
         </style>
     </h:head>
     <h:body >
+        <p:ajaxStatus onstart="PF('processDialog').show();" onsuccess="PF('processDialog').hide();"/>
+        <p:dialog modal="true" showHeader="false" draggable="false" closable="false" widgetVar="processDialog">
+            <p:graphicImage library="images" name="loading.gif"   />
+        </p:dialog>
         <ui:param name="dadosImportados" value="#{not empty randomizerBean.peladeirosPickList}"/>
         <h:form>
+
             <p:growl autoUpdate="true" escape="false"/>
             <h:panelGroup layout="block" style="float: right;font-size: 10px">
                 <p:outputPanel autoUpdate="true">
@@ -91,11 +96,14 @@
                    </div>
                </div>
             </h:panelGroup>
-
+            <br/>
+            <h:outputLink style="font-size:11px;float: right" target="_blank" value="https://www.youtube.com/watch?v=Ml4yOsSs76Q">
+                See demo here
+            </h:outputLink>
         </h:form>
 
         <style type="text/css">
-           .ui-widget-content{
+           .ui-picklist-list{
                 min-height: 300px!important;
                 overflow: auto;
             }
