@@ -3,7 +3,7 @@
 
 . Importe as estatíscas dos peladeiros
 . Escolha os jogadores que irão participar da pelada
-. Click em sortear 
+. Clique em sortear 
 
 O Peladeiro randomizer vai fazer 10 sorteios e pegar a pontuação(pontuação absolula * artilharia) mais próxima entre os dois times.
 
