@@ -20,6 +20,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -88,6 +89,7 @@ public class RandomizerBean implements Serializable {
         statisticsImporter.importaPontuacaoAbsoluta(textPontuacaoAbsoluta);
 
         disponiveis = peladeiroManager.getPeladeiros();
+        Collections.sort(disponiveis,(p1, p2) -> p1.getNome().compareTo(p2.getNome()));
         participantes = new ArrayList<>();
         peladeirosPickList = new DualListModel<>(disponiveis,participantes);
         FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Importação realizada com sucesso!"));
