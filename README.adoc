@@ -1,4 +1,4 @@
-== Peladeiro randomizer
+== http://peladeiro-rpestano.rhcloud.com/randomizer[Peladeiro randomizer^]
 
 
 . Importe as estatíscas dos peladeiros
