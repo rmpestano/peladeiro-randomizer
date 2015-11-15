@@ -1,4 +1,4 @@
-== peladeiro-rpestano.rhcloud.com/random[Peladeiro random^]
+== Peladeiro randomizer
 
 
 . Importe as estatíscas dos peladeiros
