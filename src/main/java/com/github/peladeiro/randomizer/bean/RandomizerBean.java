@@ -22,6 +22,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by pestano on 14/11/15.
@@ -75,13 +77,23 @@ public class RandomizerBean implements Serializable {
                 timesRandomizados = resultadoRandom;
             }
         }
-
-        em.persist(new Sorteio());
+        try{
+        	em.persist(new Sorteio());
+        	
+        }catch(Exception e){
+        	Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Não foi possível persistir sorteio");
+        }
 
     }
 
     public Long numSorteios() {
-        return (Long) em.createNamedQuery("Sorteio.count").getSingleResult();
+    	try{
+    		return (Long) em.createNamedQuery("Sorteio.count").getSingleResult();
+    		
+    	}catch(Exception e){
+        	Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Não foi recuperar número de sorteios");
+    		return 0L;
+    	}
     }
 
     public void importarEstatisticas() {
