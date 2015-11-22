@@ -1,4 +1,4 @@
-package com.github.peladeiro.randomizer.service;
+package com.github.peladeiro.randomizer.util;
 
 /**
  * Created by pestano on 14/11/15.

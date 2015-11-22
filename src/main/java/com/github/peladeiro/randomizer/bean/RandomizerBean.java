@@ -66,7 +66,7 @@ public class RandomizerBean implements Serializable {
     @Transactional
     public void randomize() {
         timesRandomizados = null;
-        if(getPeladeirosPickList().getTarget() == null || getPeladeirosPickList().getTarget().isEmpty()){
+        if (getPeladeirosPickList().getTarget() == null || getPeladeirosPickList().getTarget().isEmpty()) {
             throw new CustomException("Selecione os participantes da pelada");
         }
         for (int i = 0; i < numeroRepeticoes; i++) {
@@ -80,19 +80,19 @@ public class RandomizerBean implements Serializable {
 
     }
 
-    public Long numSorteios(){
+    public Long numSorteios() {
         return (Long) em.createNamedQuery("Sorteio.count").getSingleResult();
     }
 
-    public void importarEstatisticas(){
+    public void importarEstatisticas() {
         statisticsImporter.importaArtilharia(textArtilharia);
         statisticsImporter.importaPontuacaoAbsoluta(textPontuacaoAbsoluta);
 
         disponiveis = peladeiroManager.getPeladeiros();
-        Collections.sort(disponiveis,(p1, p2) -> p1.getNome().compareTo(p2.getNome()));
+        Collections.sort(disponiveis, (p1, p2) -> p1.getNome().compareTo(p2.getNome()));
         participantes = new ArrayList<>();
-        peladeirosPickList = new DualListModel<>(disponiveis,participantes);
-        FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Importação realizada com sucesso!"));
+        peladeirosPickList = new DualListModel<>(disponiveis, participantes);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Importação realizada com sucesso!"));
     }
 
     public String getTextArtilharia() {
@@ -135,7 +135,7 @@ public class RandomizerBean implements Serializable {
         this.peladeirosPickList = peladeirosPickList;
     }
 
-    public void reImportar(){
+    public void reImportar() {
         peladeirosPickList = null;
         timesRandomizados = null;
     }

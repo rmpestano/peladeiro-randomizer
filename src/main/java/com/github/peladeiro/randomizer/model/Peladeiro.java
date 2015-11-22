@@ -11,7 +11,7 @@ public class Peladeiro {
 
     private String nome;
 
-    private Double pontuacaoAbsoluta;
+    private Double pontuacaoMedia;// nro vitorias/nro jogos
 
     private Double artilhariaMedia;
 
@@ -20,31 +20,40 @@ public class Peladeiro {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public Peladeiro setNome(String nome) {
         this.nome = nome;
+        return this;
     }
 
     public Double getArtilhariaMedia() {
         return artilhariaMedia;
     }
 
-    public void setArtilhariaMedia(Double artilhariaMedia) {
+    public Peladeiro setArtilhariaMedia(Double artilhariaMedia) {
         this.artilhariaMedia = artilhariaMedia;
+        return this;
     }
 
     /**
      * nro de pontos/nro de peladas
      */
-    public Double getPontuacaoAbsoluta() {
-        return pontuacaoAbsoluta;
+    public Double getPontuacaoMedia() {
+        return pontuacaoMedia;
     }
 
-    public void setPontuacaoAbsoluta(Double pontuacaoAbsoluta) {
-        this.pontuacaoAbsoluta = pontuacaoAbsoluta;
+    public Peladeiro setPontuacaoMedia(Double pontuacaoAbsoluta) {
+        this.pontuacaoMedia = pontuacaoAbsoluta;
+        return this;
     }
 
+    /**
+     * Score do peladeiro = (pontuacao media * 15%) * artilharia media
+     * 
+     * nro de vitorias deve ter peso maior que a artilharia
+     * @return
+     */
     public Double getScore() {
-        return pontuacaoAbsoluta * artilhariaMedia;
+        return (pontuacaoMedia * 1.15) * artilhariaMedia;
     }
 
     @Override
@@ -67,4 +76,5 @@ public class Peladeiro {
     public String toString() {
         return nome;
     }
+    
 }

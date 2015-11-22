@@ -45,9 +45,10 @@ public class StatisticsImporter implements Serializable {
                     peladeiro.setNome(nome);
 
                     NumberFormat nf = Util.getNumberFormat();
-                    String pontuacaoFormatada = nf.format(nf.parse(split[1].trim()).doubleValue() / nf.parse(split[2].trim()).doubleValue());
+                    //nro vitorias/ nro jogos
+                    String pontuacaoMedia = nf.format(nf.parse(split[1].trim()).doubleValue() / nf.parse(split[2].trim()).doubleValue());
 
-                    peladeiro.setPontuacaoAbsoluta(Double.valueOf(pontuacaoFormatada));
+                    peladeiro.setPontuacaoMedia(Double.valueOf(pontuacaoMedia));
 
             }
 
