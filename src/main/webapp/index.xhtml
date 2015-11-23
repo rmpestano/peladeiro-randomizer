@@ -66,7 +66,7 @@
 
                    <div class="ui-grid-col-6">
                        <p:panel header="Times da pelada" style="min-height: 300px;overflow: auto" styleClass="panelRandomized">
-                           <p:panelGrid layout="grid" columns="2" rendered="#{not empty randomizerBean.timesRandomizados}" styleClass="grid">
+                           <p:panelGrid layout="grid" columns="2" rendered="#{dadosImportados}" styleClass="grid">
                                <h:panelGroup layout="block">
                                <span style="text-align: center">
                                    <b>Time 1</b> (#{randomizerBean.timesRandomizados.time1.pontuacao} pontos)
